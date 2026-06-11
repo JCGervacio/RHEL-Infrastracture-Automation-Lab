@@ -1,0 +1,7 @@
+---
+
+- name: Connectivity check
+  hosts: all
+  tasks:
+    - name: Ping all managed nodes
+      ansible.builtin.ping:

@@ -1,0 +1,14 @@
+[webservers]
+node1.lab.local ansible_host=192.168.56.11
+
+[dbservers]
+node2.lab.local ansible_host=192.168.56.12
+
+[infra]
+services.lab.local ansible_host=192.168.56.13
+
+[lab:children]
+webservers
+dbservers
+infra
+
