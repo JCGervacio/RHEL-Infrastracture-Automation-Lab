@@ -1,0 +1,7 @@
+---
+
+- name: Apply baseline configuration to all managed nodes
+  hosts: webservers:dbservers
+  become: true
+  roles: 
+    - base_config

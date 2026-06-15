@@ -1,0 +1,25 @@
+---
+
+# Baseline configuration applied to every managed host
+
+- name: Ensure common utility packages are installed
+  ansible.builtin.dnf:
+    name:
+      - vim
+      - tree
+      - git
+      - bash-completion
+    state: present
+
+- name: Set the system timezone
+  community.general.timezone:
+    name: America/New_York
+
+- name: Deploy a standard message of the day
+  ansible.builtin.copy:
+    content: "Managed by Ansible - changes may be overwritten.\n"
+    dest: /etc/motd
+    owner: root
+    group: root
+    mode: '0644'
+ 
