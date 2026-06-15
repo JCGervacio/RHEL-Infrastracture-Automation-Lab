@@ -1,0 +1,26 @@
+---
+# Configure a node to use the local DNF mirror on services
+
+- name: Configure local BaseOS repository
+  ansible.builtin.yum_repository:
+    file: local
+    name: local-baseos
+    description: Local BaseOS
+    baseurl: http://services.lab.local/repo/BaseOS
+    enabled: true
+    gpgcheck: false
+
+- name: Configure local AppStream repository
+  ansible.builtin.yum_repository:
+    file: local
+    name: local-appstream
+    description: Local AppStream
+    baseurl: http://services.lab.local/repo/AppStream
+    enabled: true
+    gpgcheck: false
+
+- name: Disable Red Hat subscription repo management
+  ansible.builtin.command:
+    cmd: subscription-manager config --rhsm.manage_repos=0
+  register: rhsm_result
+  changed_when: false

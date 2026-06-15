@@ -1,0 +1,7 @@
+---
+
+- name: Configure managed nodes to use local mirror
+  hosts: webservers:dbservers
+  become: true
+  roles:
+    - repo_client
