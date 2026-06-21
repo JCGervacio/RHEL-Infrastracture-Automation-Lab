@@ -1,0 +1,7 @@
+---
+- name: COnfigure control node to use local mirror
+  hosts: localhost
+  connection: local
+  become: true
+  roles:
+    - repo_client
