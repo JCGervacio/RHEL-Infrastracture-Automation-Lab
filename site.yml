@@ -1,0 +1,7 @@
+---
+- name: Configure all managed nodes
+  hosts: webservers:dbservers
+  become: true
+  roles:
+      - repo_client
+      - base_config
