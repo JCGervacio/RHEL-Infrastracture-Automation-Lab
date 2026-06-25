@@ -1,0 +1,7 @@
+---
+
+- name: Manage users and groups on all nodes
+  hosts: webservers:dbservers
+  become: true
+  roles:
+    - user_mgmt
