@@ -1,0 +1,22 @@
+---
+- name: Install httpd
+  ansible.builtin.dnf:
+    name: httpd
+    state: present
+
+- name: Deploy custom httpd config
+  ansible.builtin.copy:
+    content: |
+      ServerName {{ ansible_hostname }}
+      Listen 8080
+    dest: /etc/httpd/conf.d/custom.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart httpd
+
+- name: Ensure httpd is started and enabled
+  ansible.builtin.service:
+    name: httpd
+    state: started
+    enabled: true
