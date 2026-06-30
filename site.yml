@@ -1,7 +1,15 @@
 ---
-- name: Configure all managed nodes
+- name: Configure all managed nodes with baseline
   hosts: webservers:dbservers
   become: true
   roles:
-      - repo_client
-      - base_config
+    - repo_client
+    - base_config
+    - user_mgmt
+
+- name: Configure web servers
+  hosts: webservers
+  become: true
+  roles:
+    - web_server
+    - firewall_config
