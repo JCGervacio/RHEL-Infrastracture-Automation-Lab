@@ -12,7 +12,4 @@
     append: true
     shell: /bin/bash
     state: present
-  loop:
-    - alice
-    - bob
-    - carol
+  loop: "{{ user_mgmt_users }}"

@@ -1,2 +1,6 @@
 ---
-# defaults file for roles/user_mgmt
+user_mgmt_users:
+  - alice
+  - bob
+  - carol
+  - dave
