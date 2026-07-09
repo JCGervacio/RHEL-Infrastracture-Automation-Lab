@@ -1,0 +1,11 @@
+---
+- name: Load encrypted secrets
+  ansible.builtin.include_vars: vars/secret.yml
+
+- name: Render info file from template
+  ansible.builtin.template:
+    src: info.conf.j2
+    dest: /etc/info.conf
+    owner: root
+    group: root
+    mode: '0600'

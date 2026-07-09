@@ -1,0 +1,6 @@
+---
+- name: Deploy secure info file
+  hosts: webservers
+  become: true
+  roles:
+    - secure_info

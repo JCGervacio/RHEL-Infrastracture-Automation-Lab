@@ -1,0 +1,4 @@
+# Manage by Ansible - do not edit by hand
+Hostname: {{ ansible_facts['hostname'] }}
+IP Address: {{ ansible_facts['default_ipv4']['address'] }}
+API Token: {{ secure_info_api_token }}
