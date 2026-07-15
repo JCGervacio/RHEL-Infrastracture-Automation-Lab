@@ -1,0 +1,7 @@
+---
+
+- name: Manage and configure firewalld
+  hosts: webservers
+  become: true
+  roles:
+    - firewall_config

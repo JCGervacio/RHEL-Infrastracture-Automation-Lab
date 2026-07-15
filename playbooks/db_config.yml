@@ -1,0 +1,6 @@
+---
+- name: Deploy dbservers config file
+  hosts: dbservers
+  become: true
+  roles:
+    - db_config

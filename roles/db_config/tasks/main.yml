@@ -1,0 +1,13 @@
+---
+- name: Load database encrypted secrets file
+  ansible.builtin.include_vars: vars/secret.yml
+
+- name: Build config file template
+  ansible.builtin.template:
+    src: db.conf.j2
+    dest: /etc/db.conf
+    owner: root
+    group: root
+    mode: '0600'
+    
+  

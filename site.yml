@@ -13,3 +13,9 @@
   roles:
     - web_server
     - firewall_config
+
+- name: Configure database servers
+  hosts: dbservers
+  become: true
+  roles:
+    - db_config
