@@ -5,10 +5,8 @@
     state: present
 
 - name: Deploy custom httpd config
-  ansible.builtin.copy:
-    content: |
-      ServerName {{ ansible_hostname }}
-      Listen 8080
+  ansible.builtin.template:
+    src: httpd.conf.j2
     dest: /etc/httpd/conf.d/custom.conf
     owner: root
     group: root

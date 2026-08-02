@@ -1,0 +1,6 @@
+ServerName {{ ansible_hostname }}
+{% for vhost in web_server_vhosts %}
+{% if vhost.enabled %}
+Listen {{ vhost.port }}
+{% endif %}
+{% endfor %}

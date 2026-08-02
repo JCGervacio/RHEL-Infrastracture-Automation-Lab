@@ -1,2 +1,9 @@
 ---
 # defaults file for roles/web_server
+web_server_vhosts:
+  - name: default
+    port: 8080
+    enabled: true
+  - name: staging
+    port: 8081
+    enabled: false
