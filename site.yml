@@ -6,6 +6,7 @@
     - repo_client
     - base_config
     - user_mgmt
+    - storage_config
 
 - name: Configure web servers
   hosts: webservers

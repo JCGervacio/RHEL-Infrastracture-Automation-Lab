@@ -1,0 +1,6 @@
+---
+- name: Configure storage on nodes
+  hosts: webservers:dbservers
+  become: true
+  roles:
+    - storage_config

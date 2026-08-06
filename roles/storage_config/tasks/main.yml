@@ -1,0 +1,23 @@
+---
+- name: Create volume group on sdb
+  community.general.lvg:
+    vg: data_vg
+    pvs: /dev/sdb
+
+- name: Create logical volume
+  community.general.lvol:
+    vg: data_vg
+    lv: data_lv
+    size: 2G
+
+- name: Create files system on the logical volume
+  community.general.filesystem:
+    fstype: xfs
+    dev: /dev/data_vg/data_lv
+
+- name: Mount the logical volume persistently
+  ansible.posix.mount:
+    path: /mnt/data
+    src: /dev/data_vg/data_lv
+    fstype: xfs
+    state: mounted
