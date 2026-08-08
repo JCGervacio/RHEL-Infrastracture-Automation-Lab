@@ -1,23 +1,34 @@
 ---
-- name: Create volume group on sdb
-  community.general.lvg:
-    vg: data_vg
-    pvs: /dev/sdb
+- name: Configure LVM storage with error handling
+  block:
+    - name: Create volume group
+      community.general.lvg:
+        vg: data_vg
+        pvs: /dev/sdb
 
-- name: Create logical volume
-  community.general.lvol:
-    vg: data_vg
-    lv: data_lv
-    size: 2G
+    - name: Create logical volume
+      community.general.lvol:
+        vg: data_vg
+        lv: data_lv
+        size: 2G
 
-- name: Create files system on the logical volume
-  community.general.filesystem:
-    fstype: xfs
-    dev: /dev/data_vg/data_lv
+    - name: Create files system on the logical volume
+      community.general.filesystem:
+        fstype: xfs
+        dev: /dev/data_vg/data_lv
 
-- name: Mount the logical volume persistently
-  ansible.posix.mount:
-    path: /mnt/data
-    src: /dev/data_vg/data_lv
-    fstype: xfs
-    state: mounted
+    - name: Mount the logical volume persistently
+      ansible.posix.mount:
+        path: /mnt/data
+        src: /dev/data_vg/data_lv
+        fstype: xfs
+        state: mounted
+
+  rescue:
+    - name: Report storage configuration failure
+      ansible.builtin.debug:
+        msg: "Storage setup failed on {{ ansible_facts['hostname'] }} - check that /dev/sdb exists and is unused."
+
+    - name: Fail with a clear message
+      ansible.builtin.fail:
+        msg: "storage_config could not complete on {{ ansible_facts['hostname'] }}."
