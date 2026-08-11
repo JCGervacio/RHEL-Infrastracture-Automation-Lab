@@ -1,0 +1,26 @@
+---
+- name: Explore conditionals
+  hosts: webservers:dbservers
+  become: true
+  tasks:
+    - name: Run only on RedHat family
+      ansible.builtin.debug:
+        msg: "{{ ansible_facts['hostname'] }} is RedHat family"
+      when:
+        - ansible_facts['os_family'] == "RedHat"
+        - ansible_facts['distribution_major_version'] == "9"
+
+    - name: Run only if hostname is node1
+      ansible.builtin.debug:
+        msg: "This is node1 specifically"
+      when: ansible_facts['hostname'] == "node1"
+
+    - name: Check to see if the /mnt/data directory exists
+      ansible.builtin.stat:
+        path: /mnt/data
+      register: data_dir
+
+    - name: Print the result of the stat check only if the directory exists
+      ansible.builtin.debug:
+        msg: "/mnt/data exists"
+      when: data_dir.stat.exists
