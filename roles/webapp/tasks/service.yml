@@ -1,0 +1,6 @@
+---
+- name: ENsure httpd is started and enabled
+  ansible.builtin.systemd_service:
+    name: httpd
+    state: started
+    enabled: true

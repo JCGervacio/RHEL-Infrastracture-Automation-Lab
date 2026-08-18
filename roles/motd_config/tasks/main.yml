@@ -1,0 +1,11 @@
+---
+# tasks file for roles/motd_config
+
+- name: Configure MOTD
+  ansible.builtin.copy:
+    content: |
+      Managed by Ansible-do not edit by hand
+    dest: /etc/motd
+    owner: root
+    group: root
+    mode: '0644'

@@ -1,0 +1,23 @@
+---
+- name: Explore block rescue always
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Attempt and recover
+      block:
+        - name: Try something that will fail
+          ansible.builtin.command: /bin/false
+
+        - name: This never runs because the task above failed
+          ansible.builtin.debug:
+            msg: "You will NOT see this"
+
+      rescue:
+        - name: Recovery task runs because the block failed
+          ansible.builtin.debug:
+            msg: "The block failed, so rescue took over"
+
+      always:
+        - name: This runs no matter what
+          ansible.builtin.debug:
+            msg: "Always run, success of failure"

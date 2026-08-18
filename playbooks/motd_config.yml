@@ -1,0 +1,6 @@
+---
+- name: Configure MOTD
+  hosts: webservers:dbservers
+  become: true
+  roles:
+    - motd_config

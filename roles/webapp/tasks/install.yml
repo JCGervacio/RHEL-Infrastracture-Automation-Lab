@@ -1,0 +1,5 @@
+---
+- name: Install httpd
+  ansible.builtin.dnf:
+    name: httpd
+    state: present

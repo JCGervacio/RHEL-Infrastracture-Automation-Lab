@@ -1,0 +1,13 @@
+---
+- name: Explore failed_when
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Run a command and capture its result
+      ansible.builtin.command: cat /etc/hostname
+      register: hostname_result
+      failed_when: "'node' in hostname_result.stdout"
+
+    - name: Show what we captured
+      ansible.builtin.debug:
+        var: hostname_result.stdout

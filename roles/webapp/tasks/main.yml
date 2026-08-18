@@ -1,0 +1,12 @@
+---
+- name: Install web server
+  ansible.builtin.import_tasks: install.yml
+
+- name: Deploy web content
+  ansible.builtin.import_tasks: deploy.yml
+
+- name: Configure service
+  ansible.builtin.import_tasks: service.yml
+
+- name: Configure firewall
+  ansible.builtin.import_tasks: firewall.yml

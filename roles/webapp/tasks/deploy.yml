@@ -1,0 +1,9 @@
+---
+- name: Deploy index.html from template
+  ansible.builtin.template:
+    src: webapp_template.j2
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart httpd
