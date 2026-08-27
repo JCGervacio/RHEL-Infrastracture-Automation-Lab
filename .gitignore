@@ -1,0 +1,15 @@
+# Installed collections (dependancies - install via requirements.yml) 
+collections/
+
+# Vault password files (never commit)
+*vault*pass*
+.vault_pass
+
+# SSH keys
+id_rsa
+id_ed25519
+*.pem
+
+# Editor/OS noise
+*.swp
+.DS_Store
